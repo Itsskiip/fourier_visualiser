@@ -1,4 +1,4 @@
-use glium::{glutin::surface::WindowSurface, Display, Frame};
+use glium::{glutin::surface::WindowSurface, Frame};
 
 use std::{f32::consts::PI, sync::Arc};
 
@@ -7,8 +7,6 @@ use crate::{
 };
 
 pub struct FourierSet<'a> {
-    n: usize, //number of points given in the input, also equivalent to the number of bars
-
     pub outline_gpu: Outline<'a>,
     pub outline_buffer: Buffer<OutlineVertex>,
 
@@ -22,11 +20,11 @@ impl<'a> FourierSet<'a> {
         samples: usize,
 
         outline_colour: Colour,
-        outline_width: f32,
+        _outline_width: f32, //todo: Implement
         outline_program: Arc<glium::Program>,
 
         bar_colour: Colour,
-        bar_width: f32,
+        _bar_width: f32,
         bar_program: Arc<glium::Program>,
 
         facade: &glium::Display<WindowSurface>,
@@ -36,7 +34,6 @@ impl<'a> FourierSet<'a> {
         let bars = fourier_transform(&points);
 
         Self {
-            n,
             outline_gpu: Outline::new(facade, samples, outline_program, outline_colour),
             outline_buffer: Buffer::new(samples),
             bars,
