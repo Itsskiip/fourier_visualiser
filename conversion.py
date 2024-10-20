@@ -1,4 +1,4 @@
-with open("asdf.txt") as f:
+with open("input.txt") as f:
     text = f.read()
 
 arr = text.split("\\right),\\left(")
@@ -16,5 +16,5 @@ for a in arr:
 print(total_x / len(arr))
 print(total_y / len(arr))
 
-# with open("output.txt", "w") as f:
-#     f.write(",".join(map(lambda s: "(" + s + ")", arr)))
+with open("output.txt", "w") as f:
+    f.write(",".join(map(lambda s: "(" + s + ")", arr)))
